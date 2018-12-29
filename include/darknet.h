@@ -798,3 +798,7 @@ float rand_normal();
 float rand_uniform(float min, float max);
 
 #endif
+
+#ifdef NUMPY
+image ndarray_to_image(unsigned char* src, long* shape, long* strides);
+#endif
