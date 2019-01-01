@@ -493,7 +493,6 @@ void top_predictions(network *net, int k, int *index)
     top_k(net->output, net->outputs, k, index);
 }
 
-
 float *network_predict(network *net, float *input)
 {
     network orig = *net;

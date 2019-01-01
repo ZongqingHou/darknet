@@ -494,6 +494,10 @@ typedef struct network{
 
 } network;
 
+// #if defined(__cplusplus)
+// typedef network network;
+// #endif
+
 typedef struct {
     int w;
     int h;
@@ -745,7 +749,14 @@ void draw_detections(image im, detection *dets, int num, float thresh, char **na
 matrix network_predict_data(network *net, data test);
 image **load_alphabet();
 image get_network_image(network *net);
+
+#ifdef  __cplusplus  
+extern "C" {  
+#endif  
 float *network_predict(network *net, float *input);
+#ifdef  __cplusplus  
+}  
+#endif
 
 int network_width(network *net);
 int network_height(network *net);
@@ -822,5 +833,11 @@ image ndarray_to_image(unsigned char* src, long* shape, long* strides);
 //     float * sk_dtils;
 // }sk;
 
+#ifdef  __cplusplus  
+extern "C" {  
+#endif  
 void free_memory(sk pose_struct);
 sk openpose_forward(network * const net, unsigned char* img_src, long* img_shape, long* img_strides);
+#ifdef  __cplusplus  
+}  
+#endif

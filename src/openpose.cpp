@@ -6,6 +6,8 @@
 using namespace std;
 using namespace cv;
 
+// extern "C" float* network_predict();
+
 template<typename T>
 inline int intRound(const T a)
 {
@@ -18,11 +20,7 @@ inline T fastMin(const T a, const T b)
     return (a < b ? a : b);
 }
 
-float *run_net
-    (
-    network * net,
-    float *indata
-    )
+float *run_net(network * net, float *indata)
 {
     network_predict(net, indata);
     return net->output;
@@ -496,7 +494,10 @@ sk openpose_forward(network * const net, unsigned char* img_src, long* img_shape
         }
     split(netim, input_channels);
 
-    float *netoutdata = run_net(net, netin_data);
+    // float *netoutdata = run_net(net, netin_data);
+    network_predict(net, netin_data);
+    float *netoutdata = net->output;
+    // netoutdata = netoutdata->output;
 
     float *heatmap = new float[net_inw * net_inh * NET_OUT_CHANNELS];
     for (int i = 0; i < NET_OUT_CHANNELS; ++i)
