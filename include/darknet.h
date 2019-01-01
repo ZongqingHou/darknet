@@ -600,6 +600,15 @@ typedef struct list{
     node *back;
 } list;
 
+typedef struct sk
+{
+    int shape;
+    int points;
+    int offset;
+    float scale;
+    float * sk_dtils;
+}sk;
+
 pthread_t load_data(load_args args);
 list *read_data_cfg(char *filename);
 list *read_cfg(char *filename);
@@ -799,6 +808,19 @@ float rand_uniform(float min, float max);
 
 #endif
 
+//*********************************************************************
 #ifdef NUMPY
 image ndarray_to_image(unsigned char* src, long* shape, long* strides);
 #endif
+
+// typedef struct sk
+// {
+//     int shape;
+//     int points;
+//     int offset;
+//     float scale;
+//     float * sk_dtils;
+// }sk;
+
+void free_memory(sk pose_struct);
+sk openpose_forward(network * const net, unsigned char* img_src, long* img_shape, long* img_strides);
