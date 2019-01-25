@@ -459,8 +459,8 @@ sk openpose_forward(network * const net, unsigned char* img_src, long* img_shape
     net_inh = net->h;
 //    net_outw = net->layers[net->n - 2].out_w;
 //    net_outh = net->layers[net->n - 2].out_h;
-    net_outh = 25;
-    net_outw = 25;
+    net_outh = 54;
+    net_outw = 54;
 
     int step_h = img_strides[0];
     int step_w = img_strides[1];

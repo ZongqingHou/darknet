@@ -8,7 +8,7 @@ class SK(Structure):
 				("sk_dtils", POINTER(c_float))]
 
 
-lib_darknet = CDLL("/home/hdd/hdD_Git/darknet/libdarknet.so", RTLD_GLOBAL)
+lib_darknet = CDLL("libdarknet.so", RTLD_GLOBAL)
 
 load_network = lib_darknet.load_network
 load_network.argtypes = [c_char_p, c_char_p, c_int]
@@ -29,7 +29,7 @@ if __name__ == '__main__':
 	import time
 	import cv2
 
-	net = load_network("openpose.cfg".encode("ascii"), "openpose.weight".encode("ascii"), 0)
+	net = load_network("/home/hdd/dwgit/deepwalk_camp/lib/exercise/openpose.cfg".encode("ascii"), "/home/hdd/dwgit/deepwalk_camp/lib/exercise/openpose.weight".encode("ascii"), 0)
 	set_batch_network(net, 1)
 
 	dd = cv2.imread("123.jpg")
